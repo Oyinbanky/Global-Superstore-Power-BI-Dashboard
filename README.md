@@ -34,19 +34,19 @@ Global Superstore is a global online retailer based in New York, boasting a broa
 
    ---
    ### Some of the KPIs used and measures
-- **Total Profit: SUM(Profit)**:
+- **Total Profit**: SUM(Orders[Profit])
 Shows the cumulative profit earned across all transactions. It’s the core profitability metric used throughout the report.
 
- - **Total Sales: SUM(Sales)**:
+ - **Total Sales**:SUM(Orders[Sales])
 Represents the total revenue generated from all product sales.
 
-- **Profit Margin**: Total Profit / Total Sales
+- **Profit Margin**: DIVIDE([Total Profit], [Total Sales], 0)
 This ratio indicates how efficiently the company is converting sales into actual profit.
 
-- **Average Discount**: AVERAGE(Discount)
+- **Average Discount**: AVERAGE(Orders[Discount])
 Provides insight into the typical discount offered, helping assess the impact on profit.
 
-- **Shipping Cost**: SUM(Shipping Cost)
+- **Shipping Cost**: SUM(Orders[Shipping Cost])
 Used to understand logistics expenses and their effect on profitability.
 
 - **Rank by Profit**: RANKX(ALL(Country), [Total Profit])
@@ -55,7 +55,7 @@ Ranks countries or regions based on total profit, used to filter or highlight to
 - **Average Profit per City**: AVERAGEX(VALUES(City), [Total Profit])
 Helps identify underperforming cities.
 
-- **Orders Count**: COUNTROWS('Orders'):
+- **Orders Count**: COUNT(Orders[Order ID]):
 Used to filter out cities with fewer than 10 orders in analyses.
 
 ---
@@ -104,7 +104,7 @@ a)Who are the most valuable customers and what do they purchase?
 ![Dashboard 2](./Global%20store%20Analysis%202%20png.png)
 
 ---
-- Question 1a: Top 3 Countries by Profit
+- **Question 1a**: Top 3 Countries by Profit
 
 Chart: Bar Chart
 
@@ -116,7 +116,7 @@ Explanation: This visual dynamically displays the top 3 countries based on total
 
 Result: United States, India, and China were the top 3 countries by total profit.
 
-- Question 1b: Top 3 Products by Country
+- **Question 1b**: Top 3 Products by Country
 
 Chart: Matrix
 
@@ -131,7 +131,7 @@ Explanation: The matrix shows the top 3 most profitable products for each of the
 Result: For instance, Binders and Copiers were top in the US, while India had other product combinations.
 
 ---
-- Question 2a: Highest Average Shipping Cost by Sub-Category (U.S.)
+- **Question 2a**: Highest Average Shipping Cost by Sub-Category (U.S.)
 Chart: Column Chart
 
 X-axis: Sub-Category
@@ -145,7 +145,7 @@ Explanation: This chart identifies the top 3 product sub categories with the hig
 Result: Copiers, Machines and Tables tend to have the highest average shipping costs in the U.S., likely due to their size and weight.
 
 ---
-- Question 3a: Total Profit by country(Nigeria in the year 2014)
+- **Question 3a**: Total Profit by country(Nigeria in the year 2014)
 
 Chart: Filled Map
 
@@ -157,7 +157,7 @@ Explanation: This map visualizes total profit distribution globally, with Nigeri
 
 Result: When hovered, Nigeria’s profit is shown and visually contrasted with global data.
 
-- Question 3b: Profit by Country (with Highlight)
+- **Question 3b**: Profit by Country (with Highlight)
 
 Chart: Bar Chart/Cards
 
@@ -170,7 +170,7 @@ Explanation: KPIs were created to show Nigeria’s total profit separately. A du
 Result: Nigeria appears visibly lower, allowing easy comparison with higher profit countries.
 
 ---
-- Question 4a:Product subcategory that is the least profitable in Southeast Asia.
+- **Question 4a**:Product subcategory that is the least profitable in Southeast Asia.
  Chart: Bar Chart
 
 X-axis: Country (Only 8 Southease Asia countries selected)
@@ -183,7 +183,7 @@ Explanation: To get the subcategory that is least profitable among selected sout
 
 Result: Products like Tables,Accessories and Supplies are least profitable with a negative value.
 
-- Question 4b:  Is there a specific country in Southeast Asia where Global Superstore should stop offering the
+- **Question 4b**:  Is there a specific country in Southeast Asia where Global Superstore should stop offering the
 subcategory identified in 4a?
 
 Chart: Stacked Barchart
@@ -199,7 +199,7 @@ Explanation: This visual shows the country with least profit of the item Table
 Result: Some countries had products with negative profit, suggesting over-discounting or poor sales, countries like Indonesia,Thailand,Myanmar.
 
 ---
-- Question 5a: Least Profitable US City (With ≥10 Orders)
+- **Question 5a**: Least Profitable US City (With ≥10 Orders)
 
 Chart:   Table
 
@@ -209,7 +209,7 @@ Explanation: Aimed at identifying the least profitable city in the US based on a
 
 Result: Burlington was identified as the least profitable US city with an average profit of -300.24.
 
-Question 5b – Investigating Burlington’s Low Profitability
+- **Question 5b**: Investigating Burlington’s Low Profitability
 
 Visuals:
 
@@ -222,7 +222,7 @@ Explanation: This breakdown helps explain why Burlington performs poorly—highl
 Result: Burlington’s higher discounts and lower sales volume caused poor profit; some products generated consistent losses.  
 
 ---
-- Question 6: Which product subcategory has the highest average profit in Australia? 
+- **Question 6**: Which product subcategory has the highest average profit in Australia? 
 Chart: Column Chart
 X axis: Sub category
 
@@ -233,7 +233,7 @@ Filter: Country(Australlia)
 Result: Appliances, Copiers and Phones  are the product subcategories with the highest  Average profit in Australlia.
 
 ---
-- Question 7: Who are the most valuable customers and what do they purchase?
+- **Question 7**: Who are the most valuable customers and what do they purchase?
   
 Chart: Table 
 
@@ -245,7 +245,38 @@ Value: Total sales
 
 Explanation: Displays the 5 top customers based on both sales and profit contribution, highlighting what was purchased and also the total sales.
 
-Result: Customers like Tom Ash were high contributors in both sales and profit.
+Result: Customers like Tom Ashbrook, Jane Waco were high contributors in both sales and profit.
+
+---
+### Key Insights
+- **Top Performers Identified**: The United States, India, and China lead in total profit, suggesting strong market presence and product-market fit.
+
+- **Low-Performing Cities**: Burlington in the U.S. stands out as the least profitable city despite having over 10 orders—indicating operational or pricing inefficiencies.
+
+- **Impact of Discounts**: In cities like Burlington, excessive discounts are correlated with low or negative profits, revealing an unsustainable pricing strategy.
+
+- **Product-Specific Losses**: Some products consistently generate losses in specific regions highlighting the importance of localized product performance tracking.
+
+- **Shipping Cost Burden**: High shipping costs are another contributing factor to poor profitability, especially in less accessible or remote cities.
+
+- **Sales Concentration**: A few products contribute significantly to overall profits, underscoring the need to prioritize high-margin, high-demand products.
+
+  ---
+ ### Business Recommendations
+- **Expand in Profitable Regions**: Increase investment, marketing, and inventory for high-performing countries (US, India, China) to capitalize on demand.
+
+- **Revise Discount Policies**: Implement stricter discounting guidelines in loss-making cities; introduce data-driven pricing controls to protect margins.
+
+- **Optimize Product Mix**: Discontinue or reevaluate poorly performing products in specific regions; focus on those with proven high profitability.
+
+- **Improve Shipping Logistics**: Consider local warehousing or regional hubs to reduce delivery costs in low profit cities.
+
+- **Tailor Regional Strategies**: Use regional dashboards to guide city-specific initiatives, aligning local campaigns with the most successful product segments.
+
+- **Leverage Data Monitoring**: Regularly update dashboards and set alerts for declining profit trends to enable proactive management.
+
+  ---
+   ### Conclusion
 
 
 
