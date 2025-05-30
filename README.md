@@ -60,6 +60,11 @@ Used to filter out cities with fewer than 10 orders in analyses.
 
 ---
 ### Visuals Breakdown
+## 📊 Global Store Sales Dashboard
+
+![Global Store Analysis](./Global%20store%20Analysis%201.png)
+
+
 
 
 
